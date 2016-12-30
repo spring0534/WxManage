@@ -72,7 +72,7 @@
     $('#submit_btn').on('click',function(){
         if(isRunning) return;
         var tb_order_no = $('#tb_order_no').val();
-        if(!(/^\d{16,20}$/.test(tb_order_no))){
+        if(!(/^\d{16}$/.test(tb_order_no))){
             alert("请输入正确的订单编号!");
             return;
         }

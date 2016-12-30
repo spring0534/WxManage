@@ -117,14 +117,16 @@ class RedpackTask extends CActiveRecord
 		$criteria->compare('ctm',$this->ctm,true);
 		$criteria->compare('utm',$this->utm,true);
         $criteria->addCondition("aid in (select aid from wxos_admin.activity where ghid='".gh()->ghid."')");
+        if(!empty($this->status) && $this->status == 1){
+            $criteria->order= 'ctm asc';
+        }else{
+            $criteria->order= 'ctm desc';
+        }
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 // 			'pagination'=>array(
 // 				'pageSize'=>15,
 // 			),
-			'sort'=>array(
-				'defaultOrder'=>'status desc,ctm asc'
-			),
 		));
 	}
 
