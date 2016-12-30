@@ -1,0 +1,75 @@
+
+.home {width: 64px;height: 64px;position: absolute;top: 20px;left: 20px;}
+.page { width: 100%; height: 100%; background-color: #871e1b; }
+.pg1 .imgBtns { margin-top: 20px; width: 100%; text-align: center; margin-bottom: 10px; }
+.pg1 .banner {width: 55%;height: auto;display: block;margin: 0 auto;margin-top: 280px;}
+.pg1 .btn-rule { margin-right: 90px; vertical-align: middle; }
+.pg1 .remainT { display: inline-block; width: 248px; height: 68px; padding: 27px 0 0 52px; font-size: 22px; color: #fff; vertical-align: middle; }
+.pg1 .div_product { width: 637px; height: 217px; margin: 0 auto 30px; padding: 24px 10px 24px 40px; position: relative; }
+.pg1 .div_product .productImg { width: 298px; height: 175px; border-radius: 10px; margin-right: 10px; vertical-align: middle;}
+.pg1 .div_product .productInfo { display: inline-block; width: 255px; height: 100%; vertical-align: middle; }
+.pg1 .div_product .productInfo .product_name { width: 100%; font-size: 20px; color: #fff; }
+.pg1 .div_product .productInfo .product_name .pname { max-width: 235px; padding-right: 20px; overflow: hidden; /*text-overflow: ellipsis; white-space: nowrap; */ }
+.pg1 .div_product .productInfo.pro_phone .product_name .pname { max-width: 260px; line-height: 24px; font-size: 18px; margin-top: -12px; }
+.pg1 .div_product .productInfo .product_name .pnum { font-size: 16px; color: #fff; margin-top: 10px; }
+.pg1 .div_product .productInfo.pro_phone .product_name .pnum { float: right; margin-top: -22px; margin-right: 20px;  }
+.pg1 .div_product .productInfo .product_price { clear: left; width: 100%; margin-bottom: 10px; margin-top: -15px; white-space: nowrap; }
+.pg1 .div_product .productInfo.pro_phone .product_price { margin-top: -5px; margin-bottom: 5px; clear: none; }
+.pg1 .div_product .productInfo .product_price .old_price { font-size: 16px; color: #fff; margin-right: 35px; max-width: 86px; display: inline-block; white-space: nowrap;}
+.pg1 .div_product .productInfo .product_price .span_price { font-size: 18px; color: #ffd800; }
+.pg1 .div_product .productInfo .product_price .price_n { font-size: 40px; }
+.pg1 .div_product .productInfo .product_btn { width: 205px; height: 63px; margin: 0 auto; }
+.pg1 .div_product .bgover { position: absolute; top: 24px; left: 40px; width: 298px; height: 175px; background-color: rgba(0,0,0,.4); display: none; border-radius: 10px;  }
+.pg1 .div_product[disabled] .bgover {  display: block;  }
+
+.kan_product { width: 100%; padding: 20px 35px; text-align: center;margin-top: -25px;}
+.kan_product img { width: 75%; border-radius: 20px; }
+.pro_detail { width: 100%; padding: 0 35px; height: 80px; margin-bottom: 35px; }
+.pro_detail .pro_info { float: left; width: 270px; height: 100%; line-height: 38px; }
+.pro_detail .pro_info .pro_name { font-size: 26px; color: #fff; max-width: 270px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pro_detail .pro_info .pro_nums { font-size: 21px; color: #fff; width: 270px; }
+.pro_detail .pro_info .pro_nums del { float: left }
+.pro_detail .pro_info .pro_nums span:not(.remain_num) { float: right; font-size: 16px; }
+.pro_detail .pro_kan { float: right; width: 275px; height: 80px; border-radius: 10px; line-height: 32px; background-color: #fff; text-align: center; padding: 10px 0; }
+.pro_detail .pro_kan .my_kan { font-size: 27px; color: #ff9900; }
+.pro_detail .pro_kan .my_kan_t { font-size: 17px; color: #b19a8e; }
+.pro_btns { width: 100%; text-align: center; margin-bottom: 20px; }
+.pro_btns .btn-get { width: 205px; height: 63px; margin-right: 80px; display: inline-block; }
+.pro_btns .btn-help { margin-right: 80px; }
+.div_ranking { width: 640px; height: 730px; padding: 100px 60px 35px; }
+.div_ranking .rankinglist { width: 100%; height: 100%; overflow: hidden; }
+.div_ranking .rankinglist .list { width: 100%; border-bottom: 2px dashed #c1b4af; height: 118px; display: -webkit-box; -webkit-box-pack: justify; -webkit-box-align: center; }
+.div_ranking .rankinglist .list .user_rankNum { width: 54px; text-align: center; font-size: 30px; color: #fff; -webkit-text-fill-color: #fff; -webkit-text-stroke-color: #d78e4c; -webkit-text-stroke-width: 2px; }
+.div_ranking .rankinglist .list .user_img { width: 75px; height: 75px; border-radius: 50%; margin-right: 15px; margin-left: 10px; }
+.div_ranking .rankinglist .list .user_descri { font-size: 20px; color: #64361e; width: 340px;}
+.div_ranking .rankinglist .list .user_descri .user_nickname { display: inline-block; color: #ff9900; vertical-align: text-bottom; max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.div_ranking .rankinglist .list .user_descri .user_skill { width: 36px; height: 36px; margin: 0 5px; vertical-align: middle; margin-top: -5px; }
+.div_b { height: 60px; width: 100%; }
+.div_ranking .load_more_btn { display: none; width: 100%; text-align: center; font-size: 18px; color: #4d4d4d;     height: 28px; line-height: 28px; }
+
+
+.ruleBox { position: fixed; width: 542px; height: 512px; top: 28%; padding-top: 100px; }
+.ruleBox .rulediv { width: 100%; height: 400px; padding: 0 50px; overflow: hidden; } 
+.sharePage .btn-known { width: 250px; height: 100px; top: 425px; }
+.sharePage .shareImg { top: 20px; right: 48px;}
+
+.codeBox { width: 542px; height: 451px; top: 28%; }
+.codeBox .verification_input { top: 140px; width: 400px; height: 60px; line-height: 60px; color: #333; font-size: 24px; border: none; outline: none; border-bottom: 4px dashed #d9863a; background-color: transparent; }
+.codeBox input.verification_input::-webkit-placeholder { color: #c8af8d; font-weight: 600; }
+.codeBox .btn-sure { top: 352px; }
+.codeBox .textDescri { position: absolute; top: 218px; padding: 0 70px; font-size: 22px; color: #f00; }
+
+.userinfoBox { width: 542px; height: 451px; top: 28%; }
+.userinfoBox .info_row { width: 420px;  border-bottom: 4px dashed #d9863a; }
+.userinfoBox .info_row label { color: #81583a; font-size: 26px; font-weight: 600; }
+.userinfoBox .info_row input.info_input { width: 340px; height: 60px; line-height: 60px; border: none; outline: none; background-color: transparent; font-size: 26px; padding-left: 10px; }
+.userinfoBox .info_row.row1 { top: 120px; }
+.userinfoBox .info_row.row2 { top: 200px; }
+.userinfoBox .btn-submit { top: 320px; }
+
+.content_prize .prizeContent { width: 100%; padding-top: 100px; text-align: center; }
+.content_prize .yourRanking { font-size: 24px; color: #2a070d; text-align: center;}
+
+#kan_total { display: inline-block;  }
+.kanr { position: fixed; display: none;width: 700px;height: auto;transform-origin: 10% 100%; -webkit-transform-origin: 10% 100%; }
+.kanr.kan_rotate { -webkit-animation: kan_rotate 0.7s both; animation: kan_rotate 0.7s both; }

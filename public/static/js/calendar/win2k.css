@@ -1,0 +1,80 @@
+.DynarchCalendar-topCont .DynarchCalendar{ border: 1px solid #e9ecf1;}
+.DynarchCalendar, .DynarchCalendar-focused {
+  background-color: #FFFFFF;
+  box-shadow: 0 3px 7px rgba(0,0,0,.2);
+}
+
+.DynarchCalendar-topBar,
+.DynarchCalendar-bottomBar,
+.DynarchCalendar-focused .DynarchCalendar-topBar,
+.DynarchCalendar-focused .DynarchCalendar-bottomBar {
+  background-color: #e9ecf1;
+  color: #A0A5AA;
+  /* height: 50PX; */
+}
+
+.DynarchCalendar-title div { color: #369;}
+
+.DynarchCalendar-dayNames {   /* border-bottom: 1px solid #B3CBE4; */   background-color: #FFFFFF;    bottom: 0;   position: relative;}
+
+.DynarchCalendar-hover-navBtn div,
+.DynarchCalendar-hover-title div,
+.DynarchCalendar-hover-bottomBar-today {
+  border-color: #ddeeff #84acd7 #84acd7 #ddeeff;
+  background-color: #93b9e2;
+  color: #000;
+}
+.DynarchCalendar-menu table td div.DynarchCalendar-hover-navBtn {
+  border-color: #93b9e2;
+  background-color: #93b9e2;
+  color: #366699;
+}
+
+.DynarchCalendar-pressed-navBtn div,
+.DynarchCalendar-pressed-title div,
+.DynarchCalendar-pressed-bottomBar-today,
+.DynarchCalendar-menu table td div.DynarchCalendar-pressed-navBtn {
+  border-color: #bfd7f2 #7faad7 #7faad7 #bfd7f2;
+  background-color: #93b9e2;
+  color: #369;
+}
+
+.DynarchCalendar-hover-date {
+  background-color: #2381E9; 
+  border-color: #2381E9;
+  color: #FFFFFF;
+}
+.DynarchCalendar-day {
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+
+.DynarchCalendar-day-disabled {
+  background: #c4c0b8;
+}
+
+.DynarchCalendar-hover-week { background-color: #ddeeff !important; }
+
+.DynarchCalendar-day-selected {
+  background-color: #ff7200;
+  border: 1px solid;
+  border-color: #ff7200;
+  margin: 0; color:#fff; font-weight:700
+}
+
+.DynarchCalendar-day-today.DynarchCalendar-day-selected { background-color: #ff7200; }
+
+.DynarchCalendar-menu {
+  background-color: rgba(81, 124, 163, 1);
+}
+.DynarchCalendar-dayNames div{text-shadow:none; font-size:12px}
+.DynarchCalendar table{ font-size:12px; color:#366699; height: 40px;}
+DynarchCalendar-topCont tr td{
+ padding: 0;
+ }
+.DynarchCalendar table tr td {
+font-size: 12px;
+/* border-bottom: #E9ECF1 solid 1px; */
+ padding: 0;
+}

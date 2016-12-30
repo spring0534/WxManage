@@ -1,0 +1,188 @@
+html, body {
+ height:100%;
+ background:#2d3a4b;
+	color:#666; 
+	font:14px/1.5 Helvetica,"Î¢ÈíÑÅºÚ","ºÚÌå",Arial,Tahoma;
+	text-align:center; overflow-y: hidden;
+	margin: 0;
+	padding: 0;
+	}
+
+#login_container {
+    height:100%;
+    width:100%;
+    text-shadow:0 1px 1px #333333;
+}
+#login_container a:link, a:visited {
+    color:#5555AA;
+    text-decoration:none;
+}
+#login_container a:hover, a:active {
+    color:#5555AA;
+    text-decoration:underline;
+}
+
+#login_container .loginPanel {
+    border: none;
+    margin:0 auto;
+    padding:27px 0 0;
+    text-align:center;
+    position:static;
+ }
+#login_container .loginPanel .lastA{
+	border:none;
+}
+#login_container .loginPanel .lang a{
+	float:right;
+	display:block;
+	width:37px;
+	height:11px;
+	line-height:11px;
+	font-size:12px;
+	text-align:center;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2c2c2c;
+	color:#a3a3a3;
+	border-right:1px solid #6f6e6e;
+}
+#login_container .loginPanel .lang a:hover{
+	color:#e0e0e0;
+}
+#login_container .loginPanel .title {
+border-radius: 4px 4px 0 0;
+font-size: 16px;
+margin: 0 auto 10px;
+text-shadow: 0 2px 0 #265CA5;
+color: #D2CACA;
+}
+	
+#login_container .loginPanel .lang{
+    position:relative;
+    bottom:-32px;
+	width:722px;
+	height:11px;
+	margin:0px auto -20px;
+}
+#login_container .loginPanel .lang h3{
+	float:right;
+}
+#login_container .loginPanel .lang .lastA{
+	border:none;
+}
+#login_container .loginPanel .lang a{
+	float:right;
+	display:block;
+	height:11px;
+	width:37px;
+	line-height:11px;
+	border-right:1px solid #6D787D;
+	font-size:12px;
+	color:#9CA1A4;
+	text-align:center;
+	text-shadow:0px 1px 0px #000;
+	text-decoration:none;
+}
+#login_container .loginPanel .lang a:hover{
+	color:#fff;
+}
+#login_container .loginPanel .panelContent {
+    padding:0;
+}
+#login_container .loginPanel .panelContent .qrcodeContent{
+    height:310px;
+}
+#login_container .loginPanel .qrcodePanel{
+    width:331px;
+    height:330px;
+    margin:0px auto;
+    padding:5px;
+}
+#login_container .loginPanel .qrcode {
+    width:auto;
+    box-shadow:0 4px 3px #333333;
+    border: none;
+}
+
+/* faqpage */
+#login_container .container {
+    width:100%;
+    padding:20px 0;
+}
+#login_container .faqMain {
+    width:748px;
+    margin-left:220px;
+}
+#login_container .faqMain .faqLeft {
+    float:left;
+}
+#login_container .faqMain .fagRight {
+    margin-left:60px;
+}
+
+#login_container .faqMain .faqContent {
+    text-align:left;
+    
+}
+
+/*IE10 hack*/ 
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { 
+   #login_container .loginPanel .qrcode {
+        box-shadow:none;
+    }
+    #login_container {
+        text-shadow:none;
+    }
+    .createNewChat .choosePersGroup .selectGroupChat {
+        margin-top: -9px;
+    }
+}
+/*footer*/
+.footer {
+  color: #FFFFFF;
+  text-shadow:0 1px 0 #000000;
+  width: 376px;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  margin-left: -188px;
+  /*margin:10px auto 29px;*/
+ 
+}
+.footer .recommend_wrp {
+  position: absolute;
+  width: 100%;
+  top: -100px;
+}
+.footer .recommend_wrp a {
+  color: #9CA1A4;
+  font-size: 12px;
+  text-shadow: 0 1px 0 #000;
+}
+.footer .recommend_wrp a:hover {
+  text-decoration: none;
+  color: #FFF;
+}
+a.icon_faq {
+  display: block;
+  margin: 0 auto;
+  width: 37px;
+}
+a.icon_faq img {
+
+  height: 37px;
+  width: 37px;
+}
+a.icon_faq:active img {
+  background-position: -38px -2px;
+}
+#login_container .loginPanel .loginTip {
+    font-size:12px;
+    height:48px;
+    margin:10px auto;
+    width:230px;
+}
+.normlDesc p{
+    color: #ffffff;
+  
+    font-size: 14px;
+}

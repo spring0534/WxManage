@@ -1,0 +1,24 @@
+2016-11-26 17:36:40:
+1146:
+msg:Table 'local_ddd.user_info' doesn't exist;
+
+2016-11-26 17:36:48:
+1146:
+msg:Table 'local_ddd.user_info' doesn't exist;
+
+2016-11-26 17:36:49:
+1146:
+msg:Table 'local_ddd.user_info' doesn't exist;
+
+2016-11-26 17:36:49:
+1146:
+msg:Table 'local_ddd.user_info' doesn't exist;
+
+2016-11-26 17:36:49:
+1146:
+msg:Table 'local_ddd.user_info' doesn't exist;
+
+2016-11-26 17:38:15:
+1146:
+msg:Table 'local_ddd.user_info' doesn't exist;
+

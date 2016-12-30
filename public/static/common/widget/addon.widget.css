@@ -1,0 +1,16 @@
+.zw-popup { width: 100%;  position: fixed;  -webkit-transition: all .5s;  left: 0;   top: 0;  right: 0;  bottom: 0;  background-color: rgba(0, 0, 0, .7)  }
+.zw-boxItem { width: 500px;  position: absolute;  left: 50%;  top: 35%;font-family:Microsoft YaHei;  margin: 0 0 0 -250px;  }
+.zw-boxItemDiv{ width: 100%; position: absolute; left: 0; top: 0; right: 0; bottom: 0; height: 100%;}
+.zw-close { width: 70px;  height: 70px;  background-color: #fff;  border-radius: 100%;  position: absolute;  right: -10px;  top: -10px;  }
+.zw-close:after, .zw-close:before { content: '';  display: block;  position: absolute;  background-color: #2aa3fe;  -webkit-transform: rotate(45deg);  transform: rotate(45deg);  border-radius: 6px;  }
+.zw-close:after { width: 44px;  height: 6px;  left: 13px;  top: 32px;  }
+.zw-close:before { width: 6px;  height: 44px;  left: 32px;  top: 13px; }
+.zw-content { font-size: 0;  line-height: 0;  background: #fff;  border-radius: 0 0 10px 10px;  padding: 20px;  text-align: center;  }
+.zw-title { width: 100%;  height: 80px;  background-color: #2aa3fe;  color: #fff;  font: bold 36px/80px Microsoft YaHei;  text-align: center;  border-radius: 10px 10px 0 0; }
+.zw-tips { font-size: 28px;  line-height: 1.5em;  padding: 10px 20px;  }
+.zw-btn { text-decoration: none;  display: inline-block;  margin: 20px;  color: #fff;  width: 180px;  height: 60px;  border-radius: 10px;  background: #55acef;  font-size: 32px;  line-height: 60px;  }
+.zw-confirm { background: #55acef;  }
+.zw-cancel { background: #3b5997;  }
+.zw-form { padding: 10px 20px;  }
+.zw-form input { width: 320px;  display: block;  margin: 0 auto 20px;;  outline: none;  border-radius: 10px;  border: solid 1px #c3c3c3; font-size: 30px;  padding: 20px;  }
+    

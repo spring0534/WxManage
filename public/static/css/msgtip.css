@@ -1,0 +1,130 @@
+html,body, 
+div, dl, dt, dd, ul, p, th, td,
+h1, h2, h3, h4, h5, h6, 
+pre, code, form, 
+fieldset, legend{
+	margin: 0;
+	padding: 0;
+}
+cite, 
+em, 
+th {
+	font-style: inherit;
+	font-weight: inherit;
+}
+strong{
+	font-weight:700;
+}
+td, 
+th, 
+div {
+	word-break:break-all;
+	word-wrap:break-word;
+}
+table {
+	border-collapse: collapse;
+	border-spacing:0;
+}
+th {
+	text-align: left;
+	font-weight:100;
+}
+ol li {
+	list-style: decimal outside;
+}
+ol{
+	padding:0 0 0 18px;
+	margin:0;
+}
+li {
+	list-style:none;
+}
+img {
+	border: 0;
+}
+html {
+	-webkit-text-size-adjust:none;
+}
+/*
+===================
+������ʽ��ʼ
+===================
+*/
+body{
+	font-family:Arial;
+	color:#333;
+	font-size:12px;
+	background:#f3f3f3;
+	line-height:1.5;
+	_width:98%;
+	overflow-x:hidden;
+	overflow-y:auto;
+}
+body.body_none{
+	background:#fff;
+}
+a{
+	color:#266aae;
+	text-decoration:none;
+}
+a:hover{
+	text-decoration:underline;
+}
+
+.user_group dt,
+#error_tips h2,
+.task_item_list .hd,
+.medal_term .ct h6,
+.app_info .hd,
+.app_present .hd,
+.app_updata .hd,
+.sql_list dt{
+	background:#f9f9f9;
+	background-repeat: no-repeat;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), color-stop(25%, #ffffff), to(#f4f4f4));
+	background-image: -webkit-linear-gradient(#ffffff, #ffffff 25%, #f4f4f4);
+	background-image: -moz-linear-gradient(top, #ffffff, #ffffff 25%, #f4f4f4);
+	background-image: -ms-linear-gradient(#ffffff, #ffffff 25%, #f4f4f4);
+	background-image: -o-linear-gradient(#ffffff, #ffffff 25%, #f4f4f4);
+	background-image: linear-gradient(#ffffff, #ffffff 25%, #f4f4f4);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f4f4f4', GradientType=0);
+	border-bottom:1px solid #dfdfdf;
+}
+
+.wrap{
+	padding:20px 20px 70px;
+}
+.wrap_pop{
+	padding:20px;
+}
+
+#error_tips{
+	border:1px solid #d4d4d4;
+	background:#fff;
+	-webkit-box-shadow: #ccc 0 1px 5px;
+	-moz-box-shadow: #ccc 0 1px 5px;
+	-o-box-shadow:#ccc 0 1px 5px;
+	box-shadow: #ccc 0 1px 5px;
+	filter: progid: DXImageTransform.Microsoft.Shadow(Strength=3, Direction=180, Color='#ccc');
+	width:500px;
+	margin:50px auto;
+}
+#error_tips h2{
+	font:bold 14px/40px Arial;
+	height:40px;
+	padding:0 20px;
+	color:#666;
+}
+.error_cont{
+	padding:20px 20px 30px 80px;
+	background:url(../images/tips/light.png) 20px 20px no-repeat;
+	line-height:1.8;
+}
+.success_cont{
+	padding:20px 20px 30px 80px;
+	background:url(../images/tips/success.gif) 20px 20px no-repeat;
+	line-height:1.8;
+}
+.error_return{
+	padding:10px 0 0 0;
+}
