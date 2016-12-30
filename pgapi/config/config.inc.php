@@ -9,8 +9,7 @@ $config_api = array(); //配置数组
 if(ENV_VAL == 10) //本地环境
 	$config_api['dbmaster'] = array(array('127.0.0.1','root', '123456', ''));
 else 
-// 	$config_api['dbmaster'] = array(array('rdswc74ywo4iblzw2j5r0o.mysql.rds.aliyuncs.com','wxos_remote', 'wxos_remote888', ''));
-	$config_api['dbmaster'] = array(array('127.0.0.1','uu_weixin', 'uu_weixin123', ''));
+	$config_api['dbmaster'] = array(array('127.0.0.1','root', '123456', ''));
 	
 
 /*==============================================================================

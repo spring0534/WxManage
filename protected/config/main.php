@@ -34,7 +34,7 @@ return array(
 			'password'=>'admin',
 		 	'connectionID' => 'db',
 			// 可登录的IP
-			'ipFilters'=>array('127.0.0.1','192.168.3.101'),
+			'ipFilters'=>array('127.0.0.1'),
 
 		),
 	),
@@ -76,30 +76,19 @@ return array(
 
 		//admin
 		'db'=>array(
-// 			'connectionString' => 'mysql:host=rdswc74ywo4iblzw2j5r0.mysql.rds.aliyuncs.com;dbname=wxos_admin',
-// 			'emulatePrepare' => true,
-// 			'username' => 'wxos',
-// 			'password' => 'wxos888',
-// 			'charset' => 'utf8',
 			'connectionString' => 'mysql:host=127.0.0.1;dbname=wxos_admin',
 			'emulatePrepare' => true,
-			'username' => 'uu_weixin',
-			'password' => 'uu_weixin123',
+			'username' => 'root',
+			'password' => '123456',
 			'charset' => 'utf8',
 		),
 		//app
 		'db2'=>array(
-// 			'class'            => 'CDbConnection' ,
-// 			'connectionString' => 'mysql:host=rdswc74ywo4iblzw2j5r0.mysql.rds.aliyuncs.com;dbname=wxos_app',
-// 			'emulatePrepare' => true,
-// 			'username' => 'wxos',
-// 			'password' => 'wxos888',
-// 			'charset' => 'utf8',
 			'class'            => 'CDbConnection' ,
 			'connectionString' => 'mysql:host=127.0.0.1;dbname=wxos_app',
 			'emulatePrepare' => true,
-			'username' => 'uu_weixin',
-			'password' => 'uu_weixin123',
+			'username' => 'root',
+			'password' => '123456',
 			'charset' => 'utf8',
 		),
 		'errorHandler'=>array(
@@ -141,7 +130,7 @@ return array(
 		'wxapiBaseUrl'=>'http://h5.donglaishuma.com/wxapi/',
 		'defautlUploadImg'=>__PUBLIC__ . '/images/icon/ooopic.png',
 	    'ghtype'=>array(0=>'普通订阅号',1=>'认证订阅号',2=>'普通服务号',3=>'认证服务号'),
-	    'oauthtype'=>array(1=>'微营',2=>'微营2',3=>'腾讯微购物',4=>'扫货帮接口',5=>'万科接口',100=>'自己'),
+	    'oauthtype'=>array(1=>'微营',2=>'微营2',100=>'自己'),
 		'msg_type'=>array('text'=>'文本','news_1'=>'单图文','news_n'=>'多图文','image'=>'图片'),
 		'sys_keyword'=>array('门户','微站'),
 		'plugin_cate'=>array('1'=>'现场','2'=>'社交','3'=>'抽奖','4'=>'促销','5'=>'游戏','6'=>'应用')
