@@ -62,6 +62,10 @@ $this->widget('zii.widgets.grid.CGridView', array(
 			'value'=>'displayStatus($data->status)',
 			'type'=>'html'
 		),
+		array(
+			'header'=>'派发信息',
+			'name'=>'errmsg'
+		),
 		'ctm',
 		array(
 			'class'=>'CButtonColumn', 
@@ -80,7 +84,8 @@ $this->widget('zii.widgets.grid.CGridView', array(
 							'class'=>'link ext-cbtn tooltip-button',
 							'title'=>'',
 							'data-original-title'=>"审核"
-						)
+						),
+						'visible' => '$data->status != 2'
 				)
 			)
 		)

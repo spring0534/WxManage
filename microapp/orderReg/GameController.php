@@ -49,7 +49,7 @@ class GameController extends appController{
 					'utm' => date('Y-m-d H:i:s',time())
 			));
 			if($row > 0){
-				$this->ajaxReturn(0, '亲提交的订单编号审核中，一般当天完成审核发放，请及时关注；红包发放后超过24小时未领取，红包会被系统自动回收，小伙伴们，发放的红包记得及时领取哦~');
+				$this->ajaxReturn(0, '订单审核中，请确认评价晒图哦，晒图后才能发奖呢！一般当天完成审核发放，请及时关注！');
 			}
 		}else{
 			$this->ajaxReturn(-1, '订单编号('.$tb_order_no.')已提交过，不能重复提交！');
