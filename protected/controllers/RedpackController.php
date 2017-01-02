@@ -30,13 +30,12 @@ class RedpackController extends BaseController{
 		if(isset($_POST['RedpackTask'])){
 		    $id=$_POST['RedpackTask']['id'];
 		    $amount=$_POST['RedpackTask']['amount'];
-		    $result=$_POST['RedpackTask']['result'];
+		    $status=$_POST['RedpackTask']['status'];
 		    $remark=$_POST['RedpackTask']['remark'];
 		    $model=$this->loadModel($id);
 		    $model->amount = $amount * 100;
 		    $model->remark = $remark;
-		    $model->status = $result == 0 ? 0 : 3;
-		    if($result == 1 && $amount > 0){ //审核通过同时派发红包
+		    if($status == 2 && $amount > 0){ //审核通过同时派发红包
 		    	$url = sprintf(self::SEND_REDPACK_URL,gh()->ghid,$model->openid,gh()->name,$model->tb_order_no,$amount*100,'感谢您的惠顾，欢迎再来!','晒图领红包');
 		    	$jsonStr = HttpUtil::getPage($url);
 		    	$json = json_decode($json); //{"action":"","errorcode":"0","message":"success","datastr":""}
@@ -52,6 +51,9 @@ class RedpackController extends BaseController{
 		    		$model->status = 3; //派发失败
 		    		$model->errmsg = "调用派发红包接口失败";
 		    	}
+		    }
+		    if(!empty($remark)){
+		    	kf_send_text_msg(gh()->ghid, $model->openid, $remark);  //发送指定人员提醒消息
 		    }
 		    if($model->save()){
 		    	$this->success('操作成功', $this->createUrl('redpack/index'));

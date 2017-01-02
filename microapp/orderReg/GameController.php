@@ -49,7 +49,8 @@ class GameController extends appController{
 					'utm' => date('Y-m-d H:i:s',time())
 			));
 			if($row > 0){
-//			    kf_send_text_msg(gh()->ghid, 'ovJ-Jwx2YtnAxq5EB-FSxk-zp3GY,ovJ-Jw2HUJohmIoW2Y16A0gAzKfw', $this->userinfo["nickname"].'提交了订单编号['.$tb_order_no.']请审核！');  //发送指定人员提醒消息
+//				kf_send_text_msg($this->activity['ghid'], 'ovJ-Jwx2YtnAxq5EB-FSxk-zp3GY', $this->userinfo["nickname"].'提交了订单编号'.$tb_order_no.'，请审核！');  //发送指定人员提醒消息
+				kf_send_text_msg($this->activity['ghid'], 'ovJ-Jw2HUJohmIoW2Y16A0gAzKfw', $this->userinfo["nickname"].'提交了订单编号'.$tb_order_no.'，请审核！');  //发送指定人员提醒消息
 				$this->ajaxReturn(0, empty($this->setting['submitTips']) ? '订单审核中，请确认评价晒图哦，晒图后才能发奖呢！一般当天完成审核发放，请及时关注！' : $this->setting['submitTips']);
 			}
 		}else{

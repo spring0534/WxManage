@@ -1948,8 +1948,11 @@ function getTableForTime($stime, $etime) {
 
 
 function kf_send_text_msg($ghid, $openid, $content){
+	if(empty(trim($content))){
+		return;
+	}
     $url = "http://127.0.0.1:8888/wx/gh/msg/SendMsg.do?ghid=%s&openid=%s&body=%s&msgtype=text";
-    $body ='{"touser":"'.$openid.'","msgtype":"text","text":{"content":"'.urlencode($content).'"}}';
+    $body =urlencode('{"touser":"'.$openid.'","msgtype":"text","text":{"content":"'.$content.'"}}');
     $rusut = HttpUtil::getPage(sprintf($url,$ghid,$openid,$body));
-    Yii::log($rusut);
+    Yii::log($rusut,'info');
 }

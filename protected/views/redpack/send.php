@@ -41,7 +41,7 @@ $form=$this->beginWidget('CActiveForm', array(
 			<label for="">状态</label>
 		</div>
 		<div class="form-input col-md-3">
-			<?php echo $form->dropDownList($model,'result',array('1'=>'审核通过','0'=>'审核失败'))?><span>审核通过同时会给用户派发红包</span>
+			<?php echo $form->dropDownList($model,'status',array('1'=>'等待审核','2'=>'审核通过','0'=>'审核失败','3'=>'派发失败'))?><span>审核通过同时会给用户派发红包</span>
 		</div>
 	</div>
 	<div class="form-row">
@@ -49,7 +49,7 @@ $form=$this->beginWidget('CActiveForm', array(
 			<label for="">备注</label>
 		</div>
 		<div class="form-input col-md-5">
-			<?php echo $form->textArea($model,'remark')?>
+			<?php echo $form->textArea($model,'remark')?><span>备注信息将发送给用户</span>
 		</div>
 	</div>
 	<div class="button-pane">
