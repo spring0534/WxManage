@@ -41,7 +41,7 @@ $form=$this->beginWidget('CActiveForm', array(
 			<label for="">状态</label>
 		</div>
 		<div class="form-input col-md-3">
-			<?php echo $form->dropDownList($model,'status',array('1'=>'等待审核','2'=>'审核通过','0'=>'审核失败','3'=>'派发失败'))?><span>审核通过同时会给用户派发红包</span>
+			<?php echo $form->dropDownList($model,'status',array('0'=>'审核失败','2'=>'审核通过',))?><span>审核通过同时会给用户派发红包</span>
 		</div>
 	</div>
 	<div class="form-row">
@@ -61,4 +61,3 @@ $form=$this->beginWidget('CActiveForm', array(
 	</div>
 <?php $this->endWidget(); ?>
 </div>
-<!-- form -->

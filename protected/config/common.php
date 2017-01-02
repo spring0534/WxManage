@@ -1954,5 +1954,5 @@ function kf_send_text_msg($ghid, $openid, $content){
     $url = "http://127.0.0.1:8888/wx/gh/msg/SendMsg.do?ghid=%s&openid=%s&body=%s&msgtype=text";
     $body =urlencode('{"touser":"'.$openid.'","msgtype":"text","text":{"content":"'.$content.'"}}');
     $rusut = HttpUtil::getPage(sprintf($url,$ghid,$openid,$body));
-    Yii::log($rusut,'info');
+    Yii::log($rusut,CLogger::LEVEL_INFO,"发送客服消息");
 }

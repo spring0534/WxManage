@@ -9,7 +9,7 @@
 *
 */
 class RedpackController extends BaseController{
-	const SEND_REDPACK_URL = 'http://www.donglaishuma.com:8888/wx/wx/cgi/SendRedPack.do?ghid=%s&openid=%s&send_name=%s&billno=%s&amount=%s&wishing=%s&act_name=%s';
+	const SEND_REDPACK_URL = 'http://127.0.0.1:8888/wx/wx/cgi/SendRedPack.do?ghid=%s&openid=%s&send_name=%s&billno=%s&amount=%s&wishing=%s&act_name=%s';
 	
 	protected function beforeAction($action){
 		return parent::beforeAction($action);
@@ -35,10 +35,11 @@ class RedpackController extends BaseController{
 		    $model=$this->loadModel($id);
 		    $model->amount = $amount * 100;
 		    $model->remark = $remark;
+		    $model->status = $status;
 		    if($status == 2 && $amount > 0){ //审核通过同时派发红包
-		    	$url = sprintf(self::SEND_REDPACK_URL,gh()->ghid,$model->openid,gh()->name,$model->tb_order_no,$amount*100,'感谢您的惠顾，欢迎再来!','晒图领红包');
+		    	$url = sprintf(self::SEND_REDPACK_URL,gh()->ghid,$model->openid,urlencode(gh()->name),$model->tb_order_no,$amount*100,urlencode('感谢您的惠顾，欢迎再来!'),urlencode('晒图领红包'));
 		    	$jsonStr = HttpUtil::getPage($url);
-		    	$json = json_decode($json); //{"action":"","errorcode":"0","message":"success","datastr":""}
+		    	$json = json_decode($jsonStr); //{"action":"","errorcode":"0","message":"success","datastr":""}
 		    	if(isset($json)){
 		    		if($json->errorcode == 0){
 		    			$model->status = 2; //派发成功
