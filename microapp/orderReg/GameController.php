@@ -33,6 +33,9 @@ class GameController extends appController{
     //保存用户信息
 	function actionSave(){
 		$tb_order_no = functions::escape($_POST['tb_order_no']);
+		if(!preg_match("/^[\d]{16}$/",$tb_order_no)){
+		    $this->ajaxReturn(-1, '订单编号('.$tb_order_no.')不正确！');
+		}
 		$task = Yii::app ()->db2->createCommand()->select('*')->from('redpack_task')
 				->where('aid=:aid and tb_order_no=:tb_order_no',array(
 					':aid' => $this->activity['aid'],

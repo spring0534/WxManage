@@ -11,7 +11,7 @@
     <title><?php  echo $this->activity['title'];?></title>
     <?php include_once ROOT_PATH.'/public/common/php_header.php';?>
     <style type="text/css">
-    html,body{
+    html{
 	    background:url("<?php echo $this->SURL(); ?>/images/bg.jpg") no-repeat;
 	    background-size:100% 100%;
 	    width:100%; 
