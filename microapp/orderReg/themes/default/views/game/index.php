@@ -64,7 +64,7 @@
 <div class="page">
 	<div class="main">
 	   <div class="input"><input type="number" id="tb_order_no" name="tb_order_no" size="20" maxlength="20" placeholder="请输入正确的订单编号"/></div>
-       <div class="btn"><input class="btn" type="button" id="submit_btn" value="领取红包"/></div>
+       <div class="btn"><input class="btn" type="button" id="submit_btn" value="此处领取红包"/></div>
     </div>
 </div>
 <script type="text/javascript">
