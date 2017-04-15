@@ -23,10 +23,10 @@ class AuthorizeController extends Controller {
 		} else {
 			switch ($ghiduser ['oauth']) {
 				case 1 : //微营
-					$this->ghidlist [$_GET ['ghid']] = array ('appid' => 'wx340cc928bc7f661e', 'secret' => '3c96e5a19951fff23303e4ec95785b32' );
+					$this->ghidlist [$_GET ['ghid']] = array ('appid' => 'wx71ca9fa930c44076', 'secret' => '80770632518b150ff2be92734be3f318' );
 					break;
 				case 2 : //微营2
-					$this->ghidlist [$_GET ['ghid']] = array ('appid' => 'wxea47046675751f41', 'secret' => '9a0fde71bfbb68011381fd308d68e2f3' );
+					$this->ghidlist [$_GET ['ghid']] = array ('appid' => 'wx71ca9fa930c44076', 'secret' => '80770632518b150ff2be92734be3f318' );
 					break;
 				case 3 : //微购物百货外部商家，回调域名指向cgi.trade.qq.com
 					if (empty ( $ghiduser ['appid'] ) || empty ( $ghiduser ['appsecret'] )) {
