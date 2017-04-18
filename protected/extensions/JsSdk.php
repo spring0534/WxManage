@@ -37,7 +37,7 @@ class JsSdk{
 							->select('appid,appsecret,access_token,at_expires,jsapi_ticket,jsapi_ticket_expire,jsapi')
 							->from('sys_user_gh')
 							->where('ghid=:ghid', array(
-							'ghid'=>'gh_30d2a3e4dc51'
+							'ghid'=>'gh_10c28910fc87'
 						))
 							->queryRow();
 						break;
@@ -47,7 +47,7 @@ class JsSdk{
 							->select('appid,appsecret,access_token,at_expires,jsapi_ticket,jsapi_ticket_expire,jsapi')
 							->from('sys_user_gh')
 							->where('ghid=:ghid', array(
-							'ghid'=>'gh_1d413409fdfb'
+							'ghid'=>'gh_10c28910fc87'
 						))
 							->queryRow();
 						break;

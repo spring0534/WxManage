@@ -20,7 +20,7 @@ $end_urles=array(
 				'http://'.DEBUG_URL.'/<_akey:\w+>/<_controller:\w+>/<_action:\w+>*' => 'apps/app/entry',
 				'http://'.DEBUG_URL.'/<_akey:\w+>/<_controller:\w+>' => 'apps/app/entry',
 				'http://'.DEBUG_URL.'/<_akey:\w+>' => 'apps/app/entry',
-				'http://'.DEBUG_URL.'/<controller:\w+>>/<action:\w+>'=>'apps/app/entry/<controller>/<action>',
+				'http://'.DEBUG_URL.'/<controller:\w+>/<action:\w+>'=>'apps/app/entry/<controller>/<action>',
 				'/'=>'/default/',
 				//app admin--------
 				'appAdmin/<_akey:\w+>/<_controller:\w+>/<_action:\w+>*' => 'apps/appManage/entry',
@@ -44,6 +44,6 @@ foreach($urls as $k=>$v){
 				$addurl['http://'.$v.'/<_akey:\w+>/<_controller:\w+>/<_action:\w+>*']= 'apps/app/entry';
 				$addurl['http://'.$v.'/<_akey:\w+>/<_controller:\w+>']= 'apps/app/entry';
 				$addurl['http://'.$v.'/<_akey:\w+>' ]= 'apps/app/entry';
-				$addurl['http://'.$v.'/<controller:\w+>>/<action:\w+>']='apps/app/entry/<controller>/<action>';
+				$addurl['http://'.$v.'/<controller:\w+>/<action:\w+>']='apps/app/entry/<controller>/<action>';
 }
 return array_merge($pre_rules,$addurl,$end_urles);
