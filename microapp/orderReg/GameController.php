@@ -36,43 +36,61 @@ class GameController extends appController{
 	    if(!preg_match("/^[\d]{10}$/",$tb_sncode)){
 	        $this->ajaxReturn(-1, '兑奖码('.$tb_order_no.')不正确！');
 	    }
-	    $task = Yii::app ()->db2->createCommand()->select('*')->from('redpack_sncode')
+	    
+	    //查询日志，判断是否超出输入错误次数
+	    $redpackLogs = Yii::app ()->db2->createCommand()->select('*')->from('redpack_log')
+	    ->where('openid=:openid and date(ctm) =:ctm',array(
+	    		':openid' => $this->userinfo['openid'],
+	    		'ctm'=> date('Y-m-d',time())
+	    ))->queryAll();
+	    if(isset($redpackLogs) && count($redpackLogs) >= 3){
+	    	$this->ajaxReturn(-1, '当天输入兑奖码次数达到上限！');
+	    }
+	    
+	    $redpackSncode = Yii::app ()->db2->createCommand()->select('*')->from('redpack_sncode')
 	    ->where('aid=:aid and sncode=:tb_sncode',array(
 	        ':aid' => $this->activity['aid'],
 	        'tb_sncode'=>$tb_sncode
 	    ))->queryRow();
-	    if($task){
-	        if($task['status'] == 1){ //可用状态
-	            $task = Yii::app ()->db2->createCommand()->select('*')->from('redpack_log')
-	            ->where('openid=:openid and date(ctm) =:ctm',array(
-	                ':openid' => $this->userinfo['openid'],
-	                'ctm'=> date('Y-m-d',time())
-	            ))->queryAll();
-	            $row = Yii::app ()->db2->createCommand()->insert('redpack_log', array(
-	                'aid' => $this->activity['aid'],
-	                'tb_order_no' => $tb_order_no,
-	                'openid' => $this->userinfo['openid'],
-	                'nickname' => $this->userinfo['nickname'],
-	                'headimgurl' => $this->userinfo['headimgurl'],
-	                'ctm' => date('Y-m-d H:i:s',time()),
-	                'utm' => date('Y-m-d H:i:s',time())
-	            ));
-	            $row = Yii::app()->db2->createCommand()->update('redpack_task', array(
-	                'status' => 1,
-	                'utm' => date('Y-m-d H:i:s',time())
-	            ), 'aid =:aid and tb_order_no =:tb_order_no',array(
-	                ':aid' => $this->activity['aid'],
-	                ':tb_order_no' => $tb_order_no
-	            ));
-	            kf_send_text_msg($this->activity['ghid'], 'ovJ-Jw2HUJohmIoW2Y16A0gAzKfw', $this->userinfo["nickname"].'，重新提交了订单编号'.$tb_order_no.'，请审核！');  //发送指定人员提醒消息
-	            $this->ajaxReturn(0, empty($this->setting['submitTips']) ? '订单重新审核中，请确认评价晒图哦，晒图后才能发奖呢！一般当天完成审核发放，请及时关注！' : $this->setting['submitTips']);
-	        }else if($task['status'] == 2){
-	            $this->ajaxReturn(-1, '兑奖码('.$tb_sncode.')在'.$task['utm'].'已被兑奖！');
-	        }else{
-	            $this->ajaxReturn(-1, '兑奖码('.$tb_sncode.')不可用！');
-	        }
+	    
+	    //保存日志
+	    $sncodeStatus = -1;
+	    if($redpackSncode) $sncodeStatus = 1;
+	    Yii::app ()->db2->createCommand()->insert('redpack_log', array(
+    		'aid' => $this->activity['aid'],
+    		'openid' => $this->userinfo['openid'],
+    		'content' => $tb_sncode,
+    		'status' => $sncodeStatus
+	    ));
+	    
+	    if($sncodeStatus == 1){
+	    	$amount = rand(1, 200); //1-200分随机一个金额
+	    	$send_redpack_url = 'http://127.0.0.1:8888/wx/wx/cgi/SendRedPack.do?ghid=%s&openid=%s&send_name=%s&billno=%s&amount=%s&wishing=%s&act_name=%s';
+	    	$url = sprintf($send_redpack_url,'gh_10c28910fc87',$this->userinfo['openid'],urlencode('相遇互动'),$tb_sncode,$amount,urlencode('感谢您的惠顾，欢迎再来!'),urlencode('拆包裹奖'));
+	    	$jsonStr = HttpUtil::getPage($url);
+	    	$json = json_decode($jsonStr); //{"action":"","errorcode":"0","message":"success","datastr":""}
+	    	if(isset($json)){
+	    		if($json->errorcode == 0){
+	    			$row = Yii::app ()->db2->createCommand()->insert('redpack_task', array(
+		    			'aid' => $this->activity['aid'],
+		    			'tb_order_no' => $tb_sncode,
+		    			'openid' => $this->userinfo['openid'],
+		    			'nickname' => $this->userinfo['nickname'],
+		    			'headimgurl' => $this->userinfo['headimgurl'],
+		    			'amount' => $amount,
+		    			'status' => 2, //派发成功
+		    			'errmsg' => $json->message,
+		    			'ctm' => date('Y-m-d H:i:s',time()),
+		    			'utm' => date('Y-m-d H:i:s',time())
+			    	));
+	    			if($row > 0){
+	    				$this->ajaxReturn(-1, '红包派发成功，请在公众号查收领取。');
+	    			}
+	    		}
+	    	}
+	    	$this->ajaxReturn(-1, '红包派发失败，请联系微信客服！');
 	    }else{
-	        $this->ajaxReturn(-1, '兑奖码('.$tb_order_no.')不正确！');
+	        $this->ajaxReturn(-1, '兑奖码('.$tb_sncode.')不正确！');
 	    }
 	}
 	
