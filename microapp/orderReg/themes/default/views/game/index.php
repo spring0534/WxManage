@@ -63,7 +63,7 @@
 <body>
 <div class="page">
 	<div class="main">
-	   <div class="input"><input type="number" id="tb_order_no" name="tb_order_no" size="20" maxlength="20" placeholder="请输入正确的订单编号"/></div>
+	   <div class="input"><input type="number" id="tb_sncode" name="tb_sncode" size="20" maxlength="20" placeholder="请输入正确的兑奖码"/></div>
        <div class="btn"><input class="btn" type="button" id="submit_btn" value="此处领取红包"/></div>
     </div>
 </div>
@@ -71,9 +71,9 @@
     var isRunning = false;
     $('#submit_btn').on('click',function(){
         if(isRunning) return;
-        var tb_order_no = $('#tb_order_no').val();
-        if(!(/^\d{16}$/.test(tb_order_no))){
-            alert("请输入正确的订单编号!");
+        var tb_sncode = $('#tb_sncode').val();
+        if(!(/^\d{10}$/.test(tb_sncode))){
+            alert("请输入正确的兑奖码!");
             return;
         }
         isRunning = true;
@@ -81,13 +81,13 @@
             type : "POST",  
             url : "<?php echo AU('game/save');?>",
             data : {  
-                "tb_order_no" : tb_order_no  
+                "tb_sncode" : tb_sncode  
             },//数据，这里使用的是Json格式进行传输  
             dataType:'json',
             success : function(result) {//返回数据根据结果进行相应的处理  
                 alert(result.result_msg);
                 if(result.result_code == 0){
-                	$('#tb_order_no').val('');
+                	$('#tb_sncode').val('');
                 }
                 isRunning = false;
             },

@@ -30,8 +30,54 @@ class GameController extends appController{
         ));
 	}
 	
-    //保存用户信息
+	//保存用户信息
 	function actionSave(){
+	    $tb_sncode = functions::escape($_POST['tb_sncode']);
+	    if(!preg_match("/^[\d]{10}$/",$tb_sncode)){
+	        $this->ajaxReturn(-1, '兑奖码('.$tb_order_no.')不正确！');
+	    }
+	    $task = Yii::app ()->db2->createCommand()->select('*')->from('redpack_sncode')
+	    ->where('aid=:aid and sncode=:tb_sncode',array(
+	        ':aid' => $this->activity['aid'],
+	        'tb_sncode'=>$tb_sncode
+	    ))->queryRow();
+	    if($task){
+	        if($task['status'] == 1){ //可用状态
+	            $task = Yii::app ()->db2->createCommand()->select('*')->from('redpack_log')
+	            ->where('openid=:openid and date(ctm) =:ctm',array(
+	                ':openid' => $this->userinfo['openid'],
+	                'ctm'=> date('Y-m-d',time())
+	            ))->queryAll();
+	            $row = Yii::app ()->db2->createCommand()->insert('redpack_log', array(
+	                'aid' => $this->activity['aid'],
+	                'tb_order_no' => $tb_order_no,
+	                'openid' => $this->userinfo['openid'],
+	                'nickname' => $this->userinfo['nickname'],
+	                'headimgurl' => $this->userinfo['headimgurl'],
+	                'ctm' => date('Y-m-d H:i:s',time()),
+	                'utm' => date('Y-m-d H:i:s',time())
+	            ));
+	            $row = Yii::app()->db2->createCommand()->update('redpack_task', array(
+	                'status' => 1,
+	                'utm' => date('Y-m-d H:i:s',time())
+	            ), 'aid =:aid and tb_order_no =:tb_order_no',array(
+	                ':aid' => $this->activity['aid'],
+	                ':tb_order_no' => $tb_order_no
+	            ));
+	            kf_send_text_msg($this->activity['ghid'], 'ovJ-Jw2HUJohmIoW2Y16A0gAzKfw', $this->userinfo["nickname"].'，重新提交了订单编号'.$tb_order_no.'，请审核！');  //发送指定人员提醒消息
+	            $this->ajaxReturn(0, empty($this->setting['submitTips']) ? '订单重新审核中，请确认评价晒图哦，晒图后才能发奖呢！一般当天完成审核发放，请及时关注！' : $this->setting['submitTips']);
+	        }else if($task['status'] == 2){
+	            $this->ajaxReturn(-1, '兑奖码('.$tb_sncode.')在'.$task['utm'].'已被兑奖！');
+	        }else{
+	            $this->ajaxReturn(-1, '兑奖码('.$tb_sncode.')不可用！');
+	        }
+	    }else{
+	        $this->ajaxReturn(-1, '兑奖码('.$tb_order_no.')不正确！');
+	    }
+	}
+	
+    //保存用户信息
+	function actionSave2(){
 		$tb_order_no = functions::escape($_POST['tb_order_no']);
 		if(!preg_match("/^[\d]{16}$/",$tb_order_no)){
 		    $this->ajaxReturn(-1, '订单编号('.$tb_order_no.')不正确！');
@@ -85,6 +131,7 @@ class GameController extends appController{
 			return !$u ['enable'] ? true : false;
 		}
 	}
+	
 	//ajax数据统一返回
 	function ajaxReturn($result_code, $msg='', $data=''){
 		echo json_encode(array(
@@ -94,6 +141,7 @@ class GameController extends appController{
 		));
 		exit();
 	}
+	
 	function SURL($fullpath = FALSE) {
 		// $cdn='http://1251012119.cdn.myqcloud.com/1251012119/jump';
 		$cdn = ''; // 暂用本地资源
