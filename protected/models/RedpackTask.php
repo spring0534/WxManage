@@ -74,7 +74,8 @@ class RedpackTask extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'aid' => '活动aid',
-			'tb_order_no' => '淘宝订单号',
+//			'tb_order_no' => '淘宝订单号',
+			'tb_order_no' => '兑奖码',
 			'openid' => '用户openid',
 			'nickname' => '微信昵称',
 			'headimgurl' => '微信头像',

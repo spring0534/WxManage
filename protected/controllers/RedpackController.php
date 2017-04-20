@@ -20,7 +20,7 @@ class RedpackController extends BaseController{
 		$model->unsetAttributes(); // clear any default values
 		if (isset($_GET['RedpackTask']))
 			$model->attributes=$_GET['RedpackTask'];
-        if(!isset($model->status)) $model->status = 1;
+        if(!isset($model->status)) $model->status = 3;
 		$this->render('index', array(
 			'model'=>$model,
 		));
@@ -33,11 +33,11 @@ class RedpackController extends BaseController{
 		    $status=$_POST['RedpackTask']['status'];
 		    $remark=$_POST['RedpackTask']['remark'];
 		    $model=$this->loadModel($id);
-		    $model->amount = $amount * 100;
+		    $model->amount = $amount;
 		    $model->remark = $remark;
 		    $model->status = $status;
 		    if($status == 2 && $amount > 0){ //审核通过同时派发红包
-		    	$url = sprintf(self::SEND_REDPACK_URL,gh()->ghid,$model->openid,urlencode(gh()->name),$model->tb_order_no,$amount*100,urlencode('感谢您的惠顾，欢迎再来!'),urlencode('晒图领红包'));
+		    	$url = sprintf(self::SEND_REDPACK_URL,gh()->ghid,$model->openid,urlencode(gh()->name),$model->tb_order_no,$amount,urlencode('感谢您的惠顾，欢迎再来!'),urlencode('晒图领红包'));
 		    	$jsonStr = HttpUtil::getPage($url);
 		    	$json = json_decode($jsonStr); //{"action":"","errorcode":"0","message":"success","datastr":""}
 		    	if(isset($json)){
@@ -62,7 +62,7 @@ class RedpackController extends BaseController{
 		}else{
 			$model=$this->loadModel($id);
 			$model->id = $id;
-			$model->amount = 5;  //默认派发5元
+			$model->amount = 100;  //默认派发1元
 			$this->render('send', array(
 					'model'=>$model
 			));

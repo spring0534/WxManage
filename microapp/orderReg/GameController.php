@@ -34,7 +34,7 @@ class GameController extends appController{
 	function actionSave(){
 	    $tb_sncode = functions::escape($_POST['tb_sncode']);
 	    if(!preg_match("/^[\d]{10}$/",$tb_sncode)){
-	        $this->ajaxReturn(-1, '兑奖码('.$tb_order_no.')不正确！');
+	        $this->ajaxReturn(-1, '兑奖码('.$tb_sncode.')格式不正确！');
 	    }
 	    
 	    //查询日志，判断是否超出输入错误次数
@@ -44,7 +44,7 @@ class GameController extends appController{
 	    		'ctm'=> date('Y-m-d',time())
 	    ))->queryAll();
 	    if(isset($redpackLogs) && count($redpackLogs) >= 3){
-	    	$this->ajaxReturn(-1, '当天输入兑奖码次数达到上限！');
+	    	$this->ajaxReturn(-1, '今天领取红包次数达到上限！');
 	    }
 	    
 	    $redpackSncode = Yii::app ()->db2->createCommand()->select('*')->from('redpack_sncode')
@@ -63,34 +63,50 @@ class GameController extends appController{
     		'status' => $sncodeStatus
 	    ));
 	    
-	    if($sncodeStatus == 1){
-	    	$amount = rand(1, 200); //1-200分随机一个金额
+	    if($redpackSncode && $redpackSncode['status'] == 1){
+//	    	$amount = rand(100, 200); //1-2元之间随机一个金额
+	    	$amount = 112; //1-2元之间随机一个金额
 	    	$send_redpack_url = 'http://127.0.0.1:8888/wx/wx/cgi/SendRedPack.do?ghid=%s&openid=%s&send_name=%s&billno=%s&amount=%s&wishing=%s&act_name=%s';
 	    	$url = sprintf($send_redpack_url,'gh_10c28910fc87',$this->userinfo['openid'],urlencode('相遇互动'),$tb_sncode,$amount,urlencode('感谢您的惠顾，欢迎再来!'),urlencode('拆包裹奖'));
 	    	$jsonStr = HttpUtil::getPage($url);
 	    	$json = json_decode($jsonStr); //{"action":"","errorcode":"0","message":"success","datastr":""}
 	    	if(isset($json)){
+	    	    $sendStatus = 1;  //默认等待派发状态
 	    		if($json->errorcode == 0){
-	    			$row = Yii::app ()->db2->createCommand()->insert('redpack_task', array(
-		    			'aid' => $this->activity['aid'],
-		    			'tb_order_no' => $tb_sncode,
-		    			'openid' => $this->userinfo['openid'],
-		    			'nickname' => $this->userinfo['nickname'],
-		    			'headimgurl' => $this->userinfo['headimgurl'],
-		    			'amount' => $amount,
-		    			'status' => 2, //派发成功
-		    			'errmsg' => $json->message,
-		    			'ctm' => date('Y-m-d H:i:s',time()),
-		    			'utm' => date('Y-m-d H:i:s',time())
-			    	));
-	    			if($row > 0){
-	    				$this->ajaxReturn(-1, '红包派发成功，请在公众号查收领取。');
-	    			}
+	    		    $sendStatus = 2; //派发成功
+	    		}else{
+	    		    $sendStatus = 3; //派发失败
+	    		}
+	    		
+	    		//兑换码状态更新为已使用
+	    		Yii::app ()->db2->createCommand()->update('redpack_sncode', array(
+	    		    'status' => 2
+	    		),"aid=:aid and sncode=:sncode",array(
+	    		    ':aid'=>$this->activity['aid'],
+	    		    ':sncode'=>$tb_sncode
+	    		));
+	    		
+	    		$row = Yii::app ()->db2->createCommand()->insert('redpack_task', array(
+	    		    'aid' => $this->activity['aid'],
+	    		    'tb_order_no' => $tb_sncode,
+	    		    'openid' => $this->userinfo['openid'],
+	    		    'nickname' => $this->userinfo['nickname'],
+	    		    'headimgurl' => $this->userinfo['headimgurl'],
+	    		    'amount' => $amount,
+	    		    'status' => $sendStatus,
+	    		    'errmsg' => $json->message,
+	    		    'ctm' => date('Y-m-d H:i:s',time()),
+	    		    'utm' => date('Y-m-d H:i:s',time())
+	    		));
+	    		if($row > 0){
+	    		    $this->ajaxReturn(0,'红包派发成功，请在公众号查收领取。');
 	    		}
 	    	}
-	    	$this->ajaxReturn(-1, '红包派发失败，请联系微信客服！');
+	    	$this->ajaxReturn(-1,'红包派发失败，请联系微信客服！');
+	    }else if($redpackSncode && $redpackSncode['status'] == 2){
+	        $this->ajaxReturn(-1,'兑奖码('.$tb_sncode.')在'.$redpackSncode['utm'].'已领取！');
 	    }else{
-	        $this->ajaxReturn(-1, '兑奖码('.$tb_sncode.')不正确！');
+	        $this->ajaxReturn(-1,'没有找到匹配的兑奖码('.$tb_sncode.')！');
 	    }
 	}
 	

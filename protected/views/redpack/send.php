@@ -30,7 +30,7 @@ $form=$this->beginWidget('CActiveForm', array(
 	</div>
 	<div class="form-row">
 		<div class="form-label col-md-2">
-			<label for="">金额(元)</label>
+			<label for="">金额(分)</label>
 		</div>
 		<div class="form-input col-md-3">
 			<?php echo $form->textField($model,'amount',array('size'=>10,'maxlength'=>10,'class'=>'col-md-6','onkeyup'=>"this.value=this.value.replace(/[^0-9.]/g,'')")); ?>
