@@ -20,7 +20,7 @@ class RedpackController extends BaseController{
 		$model->unsetAttributes(); // clear any default values
 		if (isset($_GET['RedpackTask']))
 			$model->attributes=$_GET['RedpackTask'];
-        if(!isset($model->status)) $model->status = 3;
+//        if(!isset($model->status)) $model->status = 3;
 		$this->render('index', array(
 			'model'=>$model,
 		));

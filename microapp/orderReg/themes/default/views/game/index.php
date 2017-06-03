@@ -20,11 +20,12 @@
     }
     .page .main{
         position: fixed;
-	    bottom: 33%;
+	    bottom: 41%;
 	    width: 100%;
+	    left: 0px;
     }
     .input, .btn{
-        width: 310px;
+        width: 280px;
         margin: 5px auto;
     }
     .input input{
@@ -35,17 +36,19 @@
 	    font-size: 20px;
 	    text-align: center;
 	    background-color: rgba(0, 0, 0, 0);
-        width:280px;
+        width:260px;
         height:32px;
+        -webkit-appearance: none;
     }
     .btn input{
-	    width: 300px;
+	    -webkit-appearance: none;
+	    width: 280px;
 	    height: 42px;
-	    background-color: #fff;
+	    background-color: red;
 	    border: azure;
 	    font-size: 24px;
 	    font-weight: bold;
-	    color: rgb(242, 18, 18);
+	    color: #fff;
 	    letter-spacing: 3px;
     }
     </style>
@@ -63,7 +66,7 @@
 <body>
 <div class="page">
 	<div class="main">
-	   <div class="input"><input type="number" id="tb_sncode" name="tb_sncode" size="20" maxlength="20" placeholder="请输入正确的兑奖码"/></div>
+	   <div class="input"><input type="number" id="tb_sncode" name="tb_sncode" size="20" maxlength="20" placeholder="此处输入兑奖码"/></div>
        <div class="btn"><input class="btn" type="button" id="submit_btn" value="此处领取红包"/></div>
     </div>
 </div>
@@ -76,6 +79,7 @@
             alert("请输入正确的兑奖码!");
             return;
         }
+        $('#submit_btn').attr("disabled", true);
         isRunning = true;
         $.ajax({  
             type : "POST",  
@@ -89,6 +93,7 @@
                 if(result.result_code == 0){
                 	$('#tb_sncode').val('');
                 }
+                $('#submit_btn').attr("disabled", false);
                 isRunning = false;
             },
             error:function(xhr){

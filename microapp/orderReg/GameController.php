@@ -64,8 +64,7 @@ class GameController extends appController{
 	    ));
 	    
 	    if($redpackSncode && $redpackSncode['status'] == 1){
-//	    	$amount = rand(100, 200); //1-2元之间随机一个金额
-	    	$amount = 112; //1-2元之间随机一个金额
+	    	$amount = rand(100, 130); //1-1.3元之间随机一个金额
 	    	$send_redpack_url = 'http://127.0.0.1:8888/wx/wx/cgi/SendRedPack.do?ghid=%s&openid=%s&send_name=%s&billno=%s&amount=%s&wishing=%s&act_name=%s';
 	    	$url = sprintf($send_redpack_url,'gh_10c28910fc87',$this->userinfo['openid'],urlencode('相遇互动'),$tb_sncode,$amount,urlencode('感谢您的惠顾，欢迎再来!'),urlencode('拆包裹奖'));
 	    	$jsonStr = HttpUtil::getPage($url);
@@ -80,7 +79,8 @@ class GameController extends appController{
 	    		
 	    		//兑换码状态更新为已使用
 	    		Yii::app ()->db2->createCommand()->update('redpack_sncode', array(
-	    		    'status' => 2
+	    		    'status' => 2,
+	    			'utm' => date('Y-m-d H:i:s',time())
 	    		),"aid=:aid and sncode=:sncode",array(
 	    		    ':aid'=>$this->activity['aid'],
 	    		    ':sncode'=>$tb_sncode
@@ -99,7 +99,9 @@ class GameController extends appController{
 	    		    'utm' => date('Y-m-d H:i:s',time())
 	    		));
 	    		if($row > 0){
-	    		    $this->ajaxReturn(0,'红包派发成功，请在公众号查收领取。');
+	    			kf_send_text_msg($this->activity['ghid'], $this->userinfo['openid'], '拆包裹奖领取成功，您还可以点击底部菜单【评价有礼】领取额外3-5元红包。'); 
+	    			kf_send_text_msg($this->activity['ghid'], $this->userinfo['openid'], '亲爱的，红包虽小，情意无限，后续产品使用有任何问题欢迎随时咨询我哟~~~'); 
+	    		    $this->ajaxReturn(0,'红包派发成功，您还可以点击底部菜单【评价有礼】领取额外3-5元红包。');
 	    		}
 	    	}
 	    	$this->ajaxReturn(-1,'红包派发失败，请联系微信客服！');
